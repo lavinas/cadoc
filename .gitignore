@@ -1,0 +1,34 @@
+# Binários gerados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Diretório de dependências (caso use vendoring)
+vendor/
+
+# Arquivos de build temporários
+*.log
+*.tmp
+
+# Diretórios do sistema
+.DS_Store
+Thumbs.db
+
+# Diretórios de IDEs e editores
+.vscode/
+.idea/
+*.swp
+
+# Módulos e cache do Go
+/go.sum
+/go.mod
+/go.work
+/go.work.sum
+/pkg/
+
+# Arquivos sql
+*.sql

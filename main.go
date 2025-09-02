@@ -24,5 +24,15 @@ var (
 )
 
 func main() {
-	fmt.Println("Ranking module")
+	ins := GetClientRanking(2025, 1, "12345678", 401, 1000000000, 2.00)
+	var totalValues float32
+	var totalQtty int32
+	for _, i := range ins {
+		totalValues += i.Value
+		totalQtty += i.Qtty
+		fmt.Println(i.GetInsert())
+	}
+	fmt.Printf("Total: %.2f\n", totalValues)
+	fmt.Printf("Total Quantity: %d\n", totalQtty)
+	fmt.Printf("Average Ticket: %.2f\n", totalValues/float32(totalQtty))
 }
