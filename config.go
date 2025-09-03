@@ -55,6 +55,13 @@ var (
 	sumFee     float32 = 2.25
 	stdDevProp float32 = 0.1
 	// total
-	discTotalValue float32 = 750_000_000.00
+	discTotalValue float32 = 750_234_567.21
 	discAvgFee     float32 = 2.3
+)
+
+// concred
+var (
+	concredTotalValue           float32 = 750_234_567.21
+	concredTotalEstablishments  int32   = 7_211_563
+	concredActiveEstablishments int32   = 5_001_564
 )

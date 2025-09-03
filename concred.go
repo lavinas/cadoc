@@ -7,18 +7,72 @@ import (
 var sqlConcred string = "insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (%d, %d, %d, '%s', %d, %d, %.2f, %d);"
 
 type Concred struct {
-	Year                         int32
-	Quarter                      int32
-	Brand                        int32
-	Function                     string
-	CredentialedEstablishments   int32
-	ActiveEstablishments         int32
-	TransactionValue             float32
-	TransactionQuantity          int32
+	Year                       int32
+	Quarter                    int32
+	Brand                      int32
+	Function                   string
+	CredentialedEstablishments int32
+	ActiveEstablishments       int32
+	TransactionValue           float32
+	TransactionQuantity        int32
 }
 
+// GetInsert generates the SQL insert statement for the Concred struct.
 func (c *Concred) GetInsert() string {
-	return fmt.Sprintf(sqlConcred, c.Year, c.Quarter, c.Brand, c.Function, c.ActiveEstablishments, c.TransactionValue, c.TransactionQuantity)
+	return fmt.Sprintf(sqlConcred, c.Year, c.Quarter, c.Brand, c.Function, c.CredentialedEstablishments, c.ActiveEstablishments, c.TransactionValue, c.TransactionQuantity)
 }
 
+// GetConcred generates a list of Concred records based on the provided parameters.
+func GetConcred(year int32, quarter int32, creden int32, actives int32, value float32) []*Concred {
+	ret := []*Concred{}
+	for bi, bv := range brandValues {
+		for fi, fv := range funcValues {
+			valuePortion := value * brandProp[bi] * funcProp[fi]
+			qty := int32(valuePortion / avgTicket)
+			credentialedEstablishments := int32(float32(creden) * brandProp[bi] * funcProp[fi])
+			activeEstablishments := int32(float32(actives) * brandProp[bi] * funcProp[fi])
+			ret = append(ret, &Concred{
+				Year:                       year,
+				Quarter:                    quarter,
+				Brand:                      bv,
+				Function:                   fv,
+				CredentialedEstablishments: credentialedEstablishments,
+				ActiveEstablishments:       activeEstablishments,
+				TransactionValue:           valuePortion,
+				TransactionQuantity:        qty,
+			})
+		}
+		fmt.Println()
+	}
+	return ret
+}
 
+// PrintConcred prints the Concred records.
+func PrintConcred() {
+	estabCount := int32(0)
+	activeCount := int32(0)
+	value := float32(0)
+	qty := int32(0)
+	count := int32(0)
+	for _, y := range years {
+		for _, q := range quarters {
+			disc := GetConcred(y, q, concredTotalEstablishments, concredActiveEstablishments, concredTotalValue)
+			for _, d := range disc {
+				fmt.Println(d.GetInsert())
+				estabCount += d.CredentialedEstablishments
+				activeCount += d.ActiveEstablishments
+				value += d.TransactionValue
+				qty += d.TransactionQuantity
+				count++
+			}
+		}
+	}
+	fmt.Println("--------------------------------------")
+	fmt.Printf("-- Total Credentialed Establishments: %d, expected: %d\n", estabCount, concredTotalEstablishments)
+	fmt.Printf("-- Total Active Establishments: %d, expected: %d\n", activeCount, concredActiveEstablishments)
+	fmt.Printf("-- Total Transaction Value: %.2f, expected: %.2f\n", value, concredTotalValue)
+	fmt.Printf("-- Total Transaction Quantity: %d\n", qty)
+	fmt.Printf("-- Avg ticket: %.2f expected %.2f\n", value/float32(qty), avgTicket)
+	fmt.Printf("-- Total Records: %d\n", count)
+
+}

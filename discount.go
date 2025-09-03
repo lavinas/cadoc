@@ -81,12 +81,35 @@ func GetDiscount(year int32, quarter int32, value float32, fee float32) []*Disco
 }
 
 func PrintDiscount() {
+	value := float32(0)
+	qty := int32(0)
+	avgfee := float32(0)
+	minfee := float32(0)
+	maxfee := float32(0)
+	stddev := float32(0)
+	count := int32(0)
 	for _, y := range years {
 		for _, q := range quarters {
 			disc := GetDiscount(y, q, discTotalValue, discAvgFee)
 			for _, d := range disc {
 				fmt.Println(d.GetInsert())
+				value += d.Value
+				qty += d.Qtty
+				avgfee += d.AvgFee
+				minfee += d.MinFee
+				maxfee += d.MaxFee
+				stddev += d.StdDevFee
+				count++
 			}
 		}
 	}
+	fmt.Println("--------------------------------------")
+	fmt.Printf("-- total value: %.2f, expected %.2f\n", value, discTotalValue)
+	fmt.Printf("-- total quantity: %d\n", qty)
+	fmt.Printf("-- avg fee: %.2f, expected %.2f\n", avgfee/float32(count), discAvgFee)
+	fmt.Printf("-- min fee: %.2f\n", minfee/float32(count))
+	fmt.Printf("-- max fee: %.2f\n", maxfee/float32(count))
+	fmt.Printf("-- stddev fee: %.2f\n", stddev/float32(count))
+	fmt.Printf("-- total records: %d\n", count)
+
 }
