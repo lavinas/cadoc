@@ -5,27 +5,8 @@ import (
 )
 
 var (
-	// functions
-	funcValues = []string{"D", "C"}
-	funcProp   = []float32{0.7, 0.3}
-	// Brands
-	brandValues = []int32{1, 2, 8}
-	brandProp   = []float32{0.5, 0.3, 0.2}
-	// capture
-	captValues = []int32{2, 5}
-	captProp   = []float32{0.7, 0.3}
-	// credit installments
-	instCredValues = []int32{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
-	instCredProp   = []float32{0.22, 0.14, 0.13, 0.1, 0.08, 0.07, 0.05, 0.05, 0.04, 0.04, 0.04, 0.04}
-	instCredFee    = []float32{0.00, 1.10, 1.10, 1.10, 1.10, 1.10, 2.15, 2.15, 2.15, 2.15, 2.15, 2.15}
-	// debit installments
-	instDebValues = []int32{1}
-	instDebProp   = []float32{1}
-	instDebFee    = []float32{-0.5}
-	// QttyRange
-	avgTicket float32 = 150
 	// insert text
-	sql string = "insert into cadoc_6334_ranking(Ano, Trimestre, CodigoEstabelecimento, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, ValorTransacao, QuantidadeTransacoes, TaxaDescontoMedia) values (%d, %d, '%s', '%s', %d, %d, %d, %d, %.2f, %d, %.2f);"
+	sqlRanking string = "insert into cadoc_6334_ranking(Ano, Trimestre, CodigoEstabelecimento, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, ValorTransacao, QuantidadeTransacoes, TaxaDescontoMedia) values (%d, %d, '%s', '%s', %d, %d, %d, %d, %.2f, %d, %.2f);"
 )
 
 type Ranking struct {
@@ -42,8 +23,13 @@ type Ranking struct {
 	Discount     float32
 }
 
+// GetInsert returns the SQL insert statement for the ranking
+func (r Ranking) GetInsert() string {
+	return fmt.Sprintf(sqlRanking, r.Year, r.Quarter, r.ClientCode, r.Function, r.Brand, r.Capture, r.Installments, r.Segment, r.Value, r.Qtty, r.Discount)
+}
+
 // ClientRanking returns the ranking of the client
-func GetClientRanking(year int32, quarter int32, clientCode string, clientSegment int32, amount float32, fee float32) []*Ranking {
+func GetRanking(year int32, quarter int32, clientCode string, clientSegment int32, amount float32, fee float32) []*Ranking {
 	ret := []*Ranking{}
 	for fi, fv := range funcValues {
 		for bi, bv := range brandValues {
@@ -86,7 +72,26 @@ func GetClientRanking(year int32, quarter int32, clientCode string, clientSegmen
 	return ret
 }
 
-// GetInsert returns the SQL insert statement for the ranking
-func (r Ranking) GetInsert() string {
-	return fmt.Sprintf(sql, r.Year, r.Quarter, r.ClientCode, r.Function, r.Brand, r.Capture, r.Installments, r.Segment, r.Value, r.Qtty, r.Discount)
+// ranking generate
+func PrintRanking() {
+	for _, y := range years {
+		for _, q := range quarters {
+			for i := int32(1); i <= maxClients; i++ {
+				id := maxCode + i*maxCodeLeg
+				val := maxVal + float32(i)*maxValLeg
+				rank := GetRanking(y, q, fmt.Sprintf("%08d", id), segValues[i%int32(len(segValues))], val, maxFees[i%int32(len(maxFees))])
+				for _, r := range rank {
+					fmt.Println(r.GetInsert())
+				}
+			}
+			for i := int32(1); i <= minClients; i++ {
+				id := minCode + i*minCodeLeg
+				val := minVal + float32(i)*minValLeg
+				rank := GetRanking(y, q, fmt.Sprintf("%08d", id), segValues[i%int32(len(segValues))], val, minFee[i%int32(len(minFee))])
+				for _, r := range rank {
+					fmt.Println(r.GetInsert())
+				}
+			}
+		}
+	}
 }
