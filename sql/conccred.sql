@@ -19,3 +19,4 @@ CREATE INDEX idx_cadoc_6334_conccred_period ON cadoc_6334_conccred(Ano, Trimestr
 CREATE INDEX idx_cadoc_6334_conccred_SyncStatus ON cadoc_6334_conccred(SyncStatus);
 CREATE INDEX idx_cadoc_6334_conccred_CreatedAt ON cadoc_6334_conccred(CreatedAt);
 CREATE INDEX idx_cadoc_6334_conccred_UpdatedAt ON cadoc_6334_conccred(UpdatedAt);
+
