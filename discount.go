@@ -32,6 +32,7 @@ func (r Discount) GetInsert() string {
 // GetDiscount returns the discount for a given year, quarter, value, and fee
 func GetDiscount(year int32, quarter int32, value float32, fee float32) []*Discount {
 	ret := []*Discount{}
+	totValue := float32(0)
 	for si, sv := range segValues {
 		for fi, fv := range funcValues {
 			for bi, bv := range brandValues {
@@ -71,12 +72,14 @@ func GetDiscount(year int32, quarter int32, value float32, fee float32) []*Disco
 							Value:        val,
 							Qtty:         qty,
 						}
+						totValue += val
 						ret = append(ret, discount)
 					}
 				}
 			}
 		}
 	}
+	ret[0].Value += value - totValue
 	return ret
 }
 

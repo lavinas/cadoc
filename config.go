@@ -25,9 +25,19 @@ var (
 	// segments
 	segValues = []int32{401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 421, 422, 423, 424, 425, 426, 427, 428}
 	segProp   = []float32{0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.04, 0.04}
-
 	// QttyRange
 	avgTicket float32 = 150
+	// ufs
+	ufValues = []string{"SP", "MG", "RJ", "BA", "PR", "RS", "PE", "CE", "PA", "SC", "GO", "MA", "AM", "PB", "ES", "MT", "RN", "PI", "AL", "DF", "MS", "SE", "RO", "TO", "AC", "AP", "RR"}
+	ufProp   = []float32{0.2159, 0.1002, 0.0807, 0.0697, 0.0557, 0.0526, 0.0448, 0.0434, 0.0408, 0.0384, 0.0348, 0.0329, 0.0202, 0.0195, 0.0193, 0.0182, 0.0162, 0.0158, 0.0151, 0.0140, 0.0137, 0.0108, 0.0082, 0.0074, 0.0041, 0.0039, 0.0030}
+	// cardType
+	cardtypeValues = []string{"P", "H", "C"}
+	cardtypeProp   = []float32{0.8, 0.1, 0.1}
+	
+	//product
+	prodValues = []int32{32, 33, 34, 35, 36, 37}
+	prodProp   = []float32{0.5, 0.3, 0.1, 0.05, 0.025, 0.0025}
+
 )
 
 // ranking
@@ -64,4 +74,22 @@ var (
 	concredTotalValue           float32 = 750_234_567.21
 	concredTotalEstablishments  int32   = 7_211_563
 	concredActiveEstablishments int32   = 5_001_564
+)
+
+// infresta
+var (
+	infrestaTotalEstablishments int32 = 7_211_563
+	infrestaProp                      = []float32{0.5, 0.3, 0.2}
+)
+
+// infrterm
+var (
+	infretermTerminals int32 = 7_316_222
+	infretermProp            = []float32{0.3, 0.5, 0.2}
+)
+
+// intercam
+var (
+	intercamTotalValue float32 = 750_234_567.21
+	intercamAvgFee	 float32 = 1.8
 )

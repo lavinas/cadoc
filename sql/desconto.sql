@@ -26,7 +26,7 @@ CREATE INDEX idx_cadoc_6334_desconto_CreatedAt ON cadoc_6334_desconto(CreatedAt)
 CREATE INDEX idx_cadoc_6334_desconto_UpdatedAt ON cadoc_6334_desconto(UpdatedAt);
 
 -- insercao desconto piloto
-insert into cadoc_6334_desconto(Ano, Trimestre, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, TaxaDescontoMedia, TaxaDescontoMinima, TaxaDescontoMaxima, DesvioPadraoTaxaDesconto, ValorTransacoes, QuantidadeTransacoes) values (2025, 3,'D', 1, 2, 1, 401, 1.80, 0.05, 4.05, 0.18, 9190374.00, 61269);
+insert into cadoc_6334_desconto(Ano, Trimestre, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, TaxaDescontoMedia, TaxaDescontoMinima, TaxaDescontoMaxima, DesvioPadraoTaxaDesconto, ValorTransacoes, QuantidadeTransacoes) values (2025, 3,'D', 1, 2, 1, 401, 1.80, 0.05, 4.05, 0.18, 9187366.00, 61269);
 insert into cadoc_6334_desconto(Ano, Trimestre, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, TaxaDescontoMedia, TaxaDescontoMinima, TaxaDescontoMaxima, DesvioPadraoTaxaDesconto, ValorTransacoes, QuantidadeTransacoes) values (2025, 3,'D', 1, 5, 1, 401, 1.80, 0.05, 4.05, 0.18, 3938731.75, 26258);
 insert into cadoc_6334_desconto(Ano, Trimestre, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, TaxaDescontoMedia, TaxaDescontoMinima, TaxaDescontoMaxima, DesvioPadraoTaxaDesconto, ValorTransacoes, QuantidadeTransacoes) values (2025, 3,'D', 2, 2, 1, 401, 1.80, 0.05, 4.05, 0.18, 5514224.00, 36761);
 insert into cadoc_6334_desconto(Ano, Trimestre, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, TaxaDescontoMedia, TaxaDescontoMinima, TaxaDescontoMaxima, DesvioPadraoTaxaDesconto, ValorTransacoes, QuantidadeTransacoes) values (2025, 3,'D', 2, 5, 1, 401, 1.80, 0.05, 4.05, 0.18, 2363239.00, 15754);

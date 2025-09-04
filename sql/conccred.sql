@@ -21,10 +21,9 @@ CREATE INDEX idx_cadoc_6334_conccred_CreatedAt ON cadoc_6334_conccred(CreatedAt)
 CREATE INDEX idx_cadoc_6334_conccred_UpdatedAt ON cadoc_6334_conccred(UpdatedAt);
 
 -- insercao concred piloto
-insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 1, 'D', 2524047, 1750547, 262582096.00, 1750547);
-insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 1, 'C', 1081734, 750234, 112535192.00, 750234);
-insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 2, 'D', 1514428, 1050328, 157549264.00, 1050328);
-insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 2, 'C', 649040, 450140, 67521120.00, 450140);
-insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 8, 'D', 1009618, 700218, 105032840.00, 700218);
-insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 8, 'C', 432693, 300093, 45014076.00, 300093);
-
+insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 1, 'D', 2524050, 1750551, 262582096.00, 1750547);
+insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 1, 'C', 1081734, 750234, 112535192.00, 750234);
+insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 2, 'D', 1514428, 1050328, 157549264.00, 1050328);
+insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 2, 'C', 649040, 450140, 67521120.00, 450140);
+insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 8, 'D', 1009618, 700218, 105032840.00, 700218);
+insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (2025, 3, 8, 'C', 432693, 300093, 45014076.00, 300093);

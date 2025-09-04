@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-var sqlConcred string = "insert into cadoc_6334_concred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (%d, %d, %d, '%s', %d, %d, %.2f, %d);"
+var sqlConcred string = "insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (%d, %d, %d, '%s', %d, %d, %.2f, %d);"
 
 type Concred struct {
 	Year                       int32
@@ -25,6 +25,8 @@ func (c *Concred) GetInsert() string {
 // GetConcred generates a list of Concred records based on the provided parameters.
 func GetConcred(year int32, quarter int32, creden int32, actives int32, value float32) []*Concred {
 	ret := []*Concred{}
+	totCreden := int32(0)
+	totActives := int32(0)
 	for bi, bv := range brandValues {
 		for fi, fv := range funcValues {
 			valuePortion := value * brandProp[bi] * funcProp[fi]
@@ -41,9 +43,13 @@ func GetConcred(year int32, quarter int32, creden int32, actives int32, value fl
 				TransactionValue:           valuePortion,
 				TransactionQuantity:        qty,
 			})
+			totCreden += credentialedEstablishments
+			totActives += activeEstablishments
 		}
-		fmt.Println()
+
 	}
+	ret[0].ActiveEstablishments += actives - totActives
+	ret[0].CredentialedEstablishments += creden - totCreden
 	return ret
 }
 
