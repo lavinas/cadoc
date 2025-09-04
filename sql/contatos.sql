@@ -17,3 +17,11 @@ CREATE INDEX idx_cadoc_6334_contatos_period ON cadoc_6334_contatos(Ano, Trimestr
 CREATE INDEX idx_cadoc_6334_contatos_SyncStatus ON cadoc_6334_contatos(SyncStatus);
 CREATE INDEX idx_cadoc_6334_contatos_CreatedAt ON cadoc_6334_contatos(CreatedAt);
 CREATE INDEX idx_cadoc_6334_contatos_UpdatedAt ON cadoc_6334_contatos(UpdatedAt);
+
+
+insert into cadoc_6334_contatos (Ano, Trimestre, TipoContato, Nome, Email, Telefone)
+values (2025, 3, 'D', 'Ana Silva', 'ana.silva@example.com', '(11) 98765-4321');
+insert into cadoc_6334_contatos (Ano, Trimestre, TipoContato, Nome, Email, Telefone)
+values (2025, 3, 'T', 'Bruno Souza', 'bruno.souza@example.com', '(11) 98765-4322');
+insert into cadoc_6334_contatos (Ano, Trimestre, TipoContato, Nome, Email, Telefone)
+values (2025, 3, 'I', 'Carla Pereira', 'carla.pereira@example.com', '(11) 98765-4323');

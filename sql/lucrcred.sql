@@ -23,4 +23,5 @@ CREATE INDEX idx_cadoc_6334_lucrcred_SyncStatus ON cadoc_6334_lucrcred(SyncStatu
 CREATE INDEX idx_cadoc_6334_lucrcred_CreatedAt ON cadoc_6334_lucrcred(CreatedAt);
 CREATE INDEX idx_cadoc_6334_lucrcred_UpdatedAt ON cadoc_6334_lucrcred(UpdatedAt);
 
-
+insert into cadoc_6334_lucrcred (Ano, Trimestre, ReceitaTaxaDescontoBruta, ReceitaAluguelEquipamentosConectividade, ReceitaOutras, CustoTarifaIntercambio, CustoMarketingPropaganda, CustoTaxasAcessoBandeiras, CustoRisco, CustoProcessamento, CustoOutros)
+values (2025, 3, 24007506.15, 2700657.12, 650876.00, 12003753.07, 2768657.10, 1676980.10, 650897.12, 1234500.19, 430212.13);
