@@ -1,4 +1,4 @@
-CREATE TABLE cadoc_6334_infrterm (
+CREATE TABLE dbo.cadoc_6334_infrterm (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     -- controle
     SyncStatus INT NOT NULL DEFAULT 0,

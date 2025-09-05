@@ -1,5 +1,5 @@
 -- Tabela de desconto Cadoc 6334 e indices
-CREATE TABLE cadoc_6334_desconto (
+CREATE TABLE dbo.cadoc_6334_desconto (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     -- controle
     SyncStatus INT NOT NULL DEFAULT 0,
