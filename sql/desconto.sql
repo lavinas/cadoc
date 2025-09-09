@@ -10,15 +10,15 @@ CREATE TABLE dbo.cadoc_6334_desconto (
     Trimestre NUMERIC(1, 0) NOT NULL,
     Funcao NVARCHAR(1) NOT NULL,
     Bandeira NUMERIC(2, 0) NOT NULL,
-    FormaCaptura NUMERIC (1, 0) NOT NULL,
+    FormaCaptura NUMERIC (1, 0) NOT NULL, -- 1 - tarja, 2 - chip, 4 - online, 5 - contactless (nfc), 6 - recorrente
     NumeroParcelas NUMERIC(2, 0) NOT NULL,
     CodigoSegmento NUMERIC(3, 0) NOT NULL,
-    TaxaDescontoMedia NUMERIC(4, 2) NOT NULL,
-    TaxaDescontoMinima NUMERIC(4, 2) NOT NULL,
-    TaxaDescontoMaxima NUMERIC(4, 2) NOT NULL,
-    DesvioPadraoTaxaDesconto NUMERIC(4, 2) NOT NULL,
-    ValorTransacoes NUMERIC(15, 2) NOT NULL,
-    QuantidadeTransacoes NUMERIC(12, 0) NOT NULL
+    TaxaDescontoMedia NUMERIC(4, 2) NOT NULL,  -- avg
+    TaxaDescontoMinima NUMERIC(4, 2) NOT NULL, -- min
+    TaxaDescontoMaxima NUMERIC(4, 2) NOT NULL, -- max 
+    DesvioPadraoTaxaDesconto NUMERIC(4, 2) NOT NULL, -- stddev
+    ValorTransacoes NUMERIC(15, 2) NOT NULL,      -- sum
+    QuantidadeTransacoes NUMERIC(12, 0) NOT NULL  -- count
 );
 CREATE INDEX idx_cadoc_6334_desconto_period ON cadoc_6334_desconto(Ano, Trimestre, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento);
 CREATE INDEX idx_cadoc_6334_desconto_SyncStatus ON cadoc_6334_desconto(SyncStatus);
