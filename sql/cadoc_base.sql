@@ -17,7 +17,7 @@ create index idx_cadoc_6334_base_UpdatedAt on cadoc_6334_base(UpdatedAt);
 -- Tabela de ranking cadoc 6334 e indices
 CREATE TABLE cadoc_6334_ranking (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -39,7 +39,7 @@ create unique index uk_cadoc_6334_ranking on cadoc_6334_ranking(Ano, Trimestre, 
 -- Tabela de desconto Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_desconto (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -62,7 +62,7 @@ create unique index uk_cadoc_6334_desconto on cadoc_6334_desconto(Ano, Trimestre
 -- Tabela de intercam Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_intercam (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT  NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -84,7 +84,7 @@ create unique index uk_cadoc_6334_intercam on cadoc_6334_intercam(Ano, Trimestre
 -- Tabela de conccred Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_conccred (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT  NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -102,7 +102,7 @@ create unique index uk_cadoc_6334_conccred on cadoc_6334_conccred(Ano, Trimestre
 -- Tabela de infrest Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_infresta (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -120,7 +120,7 @@ create unique index uk_cadoc_6334_infresta on cadoc_6334_infresta(Ano, Trimestre
 -- Tabela de infrterm Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_infrterm (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT  NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -136,7 +136,7 @@ create unique index uk_cadoc_6334_infrterm on cadoc_6334_infrterm(Ano, Trimestre
 -- Tabela de segmento Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_segmento (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT NULL,
     -- dados
     NomeSegmento NVARCHAR(50) NOT NULL,
     DescricaoSegmento NVARCHAR(255) NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE cadoc_6334_lucrcred (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     CadocBaseId INT NOT NULL,
     -- dados
-    Ano NUMERIC(4, 0) NOT NULL,
+    Ano NUMERIC(4, 0) NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
     ReceitaTaxaDescontoBruta NUMERIC(12, 2) NOT NULL,
     ReceitaAluguelEquipamentosConectividade NUMERIC(12, 2) NOT NULL,
@@ -170,7 +170,7 @@ create unique index uk_cadoc_6334_lucrcred on cadoc_6334_lucrcred(Ano, Trimestre
 -- Tabela de contatos Cadoc 6334 e indices
 CREATE TABLE cadoc_6334_contatos (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    CadocBaseId INT NOT NULL,
+    CadocBaseId INT  NULL,
     -- dados
     Ano NUMERIC(4, 0) NOT NULL,
     Trimestre NUMERIC(1, 0) NOT NULL,
@@ -199,45 +199,43 @@ create index idx_cadoc_6334_item_SyncStatus on cadoc_6334_item(SyncStatus);
 create index idx_cadoc_6334_item_CreatedAt on cadoc_6334_item(CreatedAt);
 create index idx_cadoc_6334_item_UpdatedAt on cadoc_6334_item(UpdatedAt);
 
--- transacoes
-CREATE TABLE cadoc_6334_transacao (
-    Id INT IDENTITY(1, 1) PRIMARY KEY,
-    CadocItemId INT NOT NULL,
-    -- dados captura
-    DataTransacao DATE,
-    HoraTransacao TIME,
-    codigo_transacao NVARCHAR(50),
-    nsu NVARCHAR(50),
-    codigo_autorizacao NVARCHAR(50),
-    funcao NVARCHAR(50),
-    bandeira NVARCHAR(50),
-    forma_captura NVARCHAR(50),
-    parcelas NUMERIC(2, 0),
-    -- dados cartao
-    bin_cartao NUMERIC(6, 0),
-    modalidade_cartao NUMERIC(3, 0),
-    -- dados estabelecimento
-    codigo_estabelecimento NVARCHAR(50),
-    mcc NUMERIC(5, 0),
-    segmento NUMERIC(5, 0),
-    -- dados terminal
-    codigo_terminal NVARCHAR(50),
-    -- valores
-    valor_transacao NUMERIC(12, 2) NOT NULL,
-    iof_percentagem NUMERIC(5, 2) NOT NULL,
-    iof_valor NUMERIC(12, 2) not NULL,
-    valor_liquido_iof NUMERIC(12, 2) NOT NULL,
-    desconto_percentagem NUMERIC(5, 2) NOT NULL,
-    desconto_valor NUMERIC(12, 2) NOT NULL,
-    intercambio_percentagem NUMERIC(5, 2),
-    intercambio_valor NUMERIC (12, 2)
-    -- referencias
-    codigo_gestao NVARCHAR(50),
-    codigo_intercambio NVARCHAR(50)
+
+-- tabela de transacao financeira (raw data)
+CREATE TABLE public.cadoc_6334_transacao_gestao (
+	cd_transacao_fin int8 NOT NULL,
+	dt_processamento timestamp NULL,
+    valor_transacao numeric(38, 2) NULL,
+	bandeira varchar(255) NULL,
+	codigo_estabelecimento int8 NULL,
+	mcc varchar(4) NULL, -- mcc
+    segmento int NULL, -- segundo momento
+	forma_captura varchar(255) NULL,
+	funcao varchar(255) NULL,
+	numero_parcelas int4 NULL,
+	percentual_desconto numeric(38, 2) NULL,
+	taxa_desconto_total numeric(38, 2) NULL,
+    cadoc_item_id int8 NULL,
+	CONSTRAINT transacao_financeira_pkey PRIMARY KEY (cd_transacao_fin),
+    FOREIGN KEY (cadoc_item_id) REFERENCES cadoc_6334_item(Id),
+    INDEX idx_cadoc_6334_transacao_intercambio_cadoc_item_id on cadoc_6334_transacao_intercambio(cadoc_item_id)
 );
-create index idx_cadoc_6334_transacao_CadocItemId on cadoc_6334_transacao(CadocItemId);
-create foreign key (CadocItemId) references cadoc_6334_item(Id);
-create unique index uk_cadoc_6334_transacao on cadoc_6334_transacao(codigo_transacao);
+
+-- tabela de transacao financeira (raw data)
+CREATE TABLE public.cadoc_6334_transacao_intercambio (
+	cd_transacao_fin int8 NOT NULL,
+    dt_processamento timestamp NULL,
+    valor_transacao numeric(38, 2) NULL,
+    taxa_intercambio_percentual numeric(5, 2) NULL,
+    taxa_intercambio_valor numeric(38, 2) NULL,
+    bin int8 NULL,
+    modalidade_cartao int4 NULL, -- segundo momento
+    produto_cartao int4 NULL, -- segundo momento
+    cadoc_item_id int8 NULL,
+	CONSTRAINT transacao_financeira_pkey PRIMARY KEY (cd_transacao_fin),
+    FOREIGN KEY (cadoc_item_id) REFERENCES cadoc_6334_item(Id),
+    INDEX idx_cadoc_6334_transacao_intercambio_cadoc_item_id on cadoc_6334_transacao_intercambio(cadoc_item_id)
+);
+
 
 -- estabelecimento
 CREATE TABLE cadoc_6334_estabelecimento (
@@ -245,6 +243,16 @@ CREATE TABLE cadoc_6334_estabelecimento (
     CadocItemId INT NOT NULL,
     -- dados
     codigo_estabelecimento NVARCHAR(50),
+    cnpj NVARCHAR(14),
+    cpf  NVRCHAR(11),
+    razao_social NVARCHAR(100),
+    uf NVARCHAR(2),
+    debito BIT,
+    credito BIT,
+    visa BIT,
+    mastercard BIT,
+    elo BIT,
+    data_credenciamento DATE,
     data_ultima_transacao DATE,
     mcc NUMERIC(5, 0),
     segmento NUMERIC(5, 0),
@@ -269,6 +277,14 @@ CREATE TABLE cadoc_6334_terminal (
 create index idx_cadoc_6334_terminal_CadocItemId on cadoc_6334_terminal(CadocItemId);
 create foreign key (CadocItemId) references cadoc_6334_item(Id);
 create unique index uk_cadoc_6334_terminal on cadoc_6334_terminal(codigo_terminal);
+
+
+-- relacionamento cadoc_base e cadoc_item
+CREATE TABLE cadoc_6334_base_item (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    CadocBaseId INT NOT NULL,
+    CadocItemId INT NOT NULL
+);
 
 ------------------------------------------------------------------------
 -- BASE DE APOIO CADOC 6334
