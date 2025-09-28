@@ -1,5 +1,6 @@
 package main
 
+// main function to run the ReconciliateRanking function
 func main() {
-	PrintIntercam()
+	ReconciliateRanking("./files/RANKING.TXT")
 }
