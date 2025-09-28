@@ -10,17 +10,17 @@ var (
 )
 
 type Ranking struct {
-	Year         int32
-	Quarter      int32
-	ClientCode   string
-	Function     string
-	Brand        int32
-	Capture      int32
-	Installments int32
-	Segment      int32
-	Value        float32
-	Qtty         int32
-	Discount     float32
+	Year         int32   `pos:"1-4"`
+	Quarter      int32   `pos:"5-5"`
+	ClientCode   string  `pos:"6-13"`
+	Function     string  `pos:"14-14"`
+	Brand        int32   `pos:"15-16"`
+	Capture      int32   `pos:"17-17"`
+	Installments int32   `pos:"18-19"`
+	Segment      int32   `pos:"20-22"`
+	Value        float32 `pos:"23-37"`
+	Qtty         int32   `pos:"38-49"`
+	Discount     float32 `pos:"50-53"`
 }
 
 // GetInsert returns the SQL insert statement for the ranking

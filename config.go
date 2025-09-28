@@ -33,11 +33,10 @@ var (
 	// cardType
 	cardtypeValues = []string{"P", "H", "C"}
 	cardtypeProp   = []float32{0.8, 0.1, 0.1}
-	
+
 	//product
 	prodValues = []int32{32, 33, 34, 35, 36, 37}
 	prodProp   = []float32{0.5, 0.3, 0.1, 0.05, 0.025, 0.0025}
-
 )
 
 // ranking
@@ -91,5 +90,5 @@ var (
 // intercam
 var (
 	intercamTotalValue float32 = 750_234_567.21
-	intercamAvgFee	 float32 = 1.8
+	intercamAvgFee     float32 = 1.8
 )
