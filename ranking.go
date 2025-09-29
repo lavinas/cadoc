@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 	"time"
@@ -65,21 +64,16 @@ func (r *Ranking) Parse(line string) (*Ranking, error) {
 		return nil, err
 	}
 	// Convert ValueInt and DiscountInt back to float32
-	r.Value = float32(r.ValueInt) / 100.0
-	r.Discount = float32(r.DiscountInt) / 100.0
+	r.Value = float32(float64(r.ValueInt) / float64(100))
+	r.Discount = float32(float64(r.DiscountInt) / float64(100))
 	return r, nil
 }
 
 
-//rounfFloatToInt32
-func roundFloatToInt32(f float32) int32 {
-	ratio := math.Pow(10, 2) // for 2 decimal places
-	roundedFloat := math.Round(float64(f) * ratio)
-	roundedInt := int32(roundedFloat)
-	fmt.Printf("Achou %f -> %f -> %d, \n", f, roundedFloat, roundedInt)
-	return roundedInt
+func (r *Ranking) String() string {
+	return fmt.Sprintf("Year: %d, Quarter: %d, ClientCode: %s, Function: %s, Brand: %d, Capture: %d, Installments: %d, Segment: %d, Value: %.2f, Qtty: %d, Discount: %.2f",
+		r.Year, r.Quarter, r.ClientCode, r.Function, r.Brand, r.Capture, r.Installments, r.Segment, r.Value, r.Qtty, r.Discount)
 }
-
 
 // ClientRanking returns the ranking of the client
 func GetRanking(year int32, quarter int32, clientCode string, clientSegment int32, amount float32, fee float32) []*Ranking {
@@ -118,10 +112,10 @@ func GetRanking(year int32, quarter int32, clientCode string, clientSegment int3
 						Installments: iv,
 						Segment:      clientSegment,
 						Value:        val,
-						ValueInt:     roundFloatToInt32(val), // store as integer in cents
+						ValueInt:     int32(val * 100), // store as integer in cents
 						Qtty:         qty,
 						Discount:     disc,
-						DiscountInt:  roundFloatToInt32(disc), // store as integer in cents
+						DiscountInt:  int32(disc * 100), // store as integer in cents
 					}
 					ret = append(ret, ranking)
 				}
@@ -234,7 +228,7 @@ func ReconciliateRanking(filename string) {
 	i := 0
 	for key, r1 := range mapRank1 {
 		if r2, ok := mapRank2[key]; ok {
-			if *r1 != *r2 {
+			if r1.String() != r2.String() {
 				mismatchCount++
 				fmt.Printf("Mismatch at line %d:\nGenerated: %+v\nFile:      %+v\n", i+2, r1, r2)
 			}
