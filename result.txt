@@ -1,4 +1,0 @@
-Line count match: 16770 lines
-Unique ranking count match: 16770 unique rankings
-All rankings match!
-Reconciliation complete.

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/ianlopshire/go-fixedwidth"
 )
@@ -15,26 +14,6 @@ var (
 	sqlRanking string = "insert into cadoc_6334_ranking(Ano, Trimestre, CodigoEstabelecimento, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, ValorTransacoes, QuantidadeTransacoes, TaxaDescontoMedia) values (%d, %d, '%s', '%s', %d, %d, %d, %d, %.2f, %d, %.2f);"
 )
 
-type RankingHeader struct {
-	FileName string `fixed:"1,8"`
-	DateStr  string `fixed:"9,16"`
-	Date     time.Time
-	Acquirer string `fixed:"17,24"`
-	Lines    int32  `fixed:"25,38"`
-}
-
-// Parse parses a line of text into a RankingHeader struct
-func (rh *RankingHeader) Parse(line string) (*RankingHeader, error) {
-	err := fixedwidth.Unmarshal([]byte(line), rh)
-	if err != nil {
-		return nil, err
-	}
-	rh.Date, err = time.Parse("20060102", rh.DateStr)
-	if err != nil {
-		return nil, err
-	}
-	return rh, nil
-}
 
 type Ranking struct {
 	Year         int32  `fixed:"1,4"`
@@ -69,7 +48,6 @@ func (r *Ranking) Parse(line string) (*Ranking, error) {
 	return r, nil
 }
 
-
 func (r *Ranking) String() string {
 	return fmt.Sprintf("Year: %d, Quarter: %d, ClientCode: %s, Function: %s, Brand: %d, Capture: %d, Installments: %d, Segment: %d, Value: %.2f, Qtty: %d, Discount: %.2f",
 		r.Year, r.Quarter, r.ClientCode, r.Function, r.Brand, r.Capture, r.Installments, r.Segment, r.Value, r.Qtty, r.Discount)
@@ -99,7 +77,7 @@ func GetRanking(year int32, quarter int32, clientCode string, clientSegment int3
 					gval, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", val), 32)
 					val = float32(gval)
 					qty := int32(val / avgTicket)
-					gdisc, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", fee + varFee[ii]), 32)
+					gdisc, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", fee+varFee[ii]), 32)
 					disc := float32(gdisc)
 					// create and append ranking
 					ranking := &Ranking{
@@ -165,7 +143,6 @@ func ParseRankingFile(filename string) (*RankingHeader, []*Ranking, error) {
 		return nil, nil, err
 	}
 	defer f.Close()
-	rankings := []*Ranking{}
 	scanner := bufio.NewScanner(f)
 	// read header
 	if !scanner.Scan() {
@@ -177,6 +154,7 @@ func ParseRankingFile(filename string) (*RankingHeader, []*Ranking, error) {
 		return nil, nil, fmt.Errorf("error parsing header: %w", err)
 	}
 	// read rankings
+	rankings := []*Ranking{}
 	for scanner.Scan() {
 		line := scanner.Text()
 		ranking, err := (&Ranking{}).Parse(line)
