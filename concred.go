@@ -2,24 +2,38 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/ianlopshire/go-fixedwidth"
 )
 
 var sqlConcred string = "insert into cadoc_6334_conccred(Ano, Trimestre, Bandeira, Funcao, QuantidadeEstabelecimentosCredenciados, QuantidadeEstabelecimentosAtivos, ValorTransacoes, QuantidadeTransacoes) values (%d, %d, %d, '%s', %d, %d, %.2f, %d);"
 
 type Concred struct {
-	Year                       int32
-	Quarter                    int32
-	Brand                      int32
-	Function                   string
-	CredentialedEstablishments int32
-	ActiveEstablishments       int32
+	Year                       int32   `fixed:"1,4"`
+	Quarter                    int32   `fixed:"5,5"`
+	Brand                      int32   `fixed:"6,7"`
+	Function                   string  `fixed:"8,8"`
+	CredentialedEstablishments int32   `fixed:"9,17"`
+	ActiveEstablishments       int32   `fixed:"18,26"`
 	TransactionValue           float32
-	TransactionQuantity        int32
+	TransactionValueInt        int32   `fixed:"27,41"`
+	TransactionQuantity        int32   `fixed:"42,53"`
 }
 
 // GetInsert generates the SQL insert statement for the Concred struct.
 func (c *Concred) GetInsert() string {
 	return fmt.Sprintf(sqlConcred, c.Year, c.Quarter, c.Brand, c.Function, c.CredentialedEstablishments, c.ActiveEstablishments, c.TransactionValue, c.TransactionQuantity)
+}
+
+// Parse parses a line of text into a Concred struct.
+func (c *Concred) Parse(line string) (*Concred, error) {
+	err := fixedwidth.Unmarshal([]byte(line), c)
+	if err != nil {
+		return nil, err
+	}
+	// Convert TransactionValueInt back to float32
+	c.TransactionValue = float32(float64(c.TransactionValueInt) / float64(100))
+	return c, nil
 }
 
 // GetConcred generates a list of Concred records based on the provided parameters.

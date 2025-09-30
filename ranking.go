@@ -14,7 +14,6 @@ var (
 	sqlRanking string = "insert into cadoc_6334_ranking(Ano, Trimestre, CodigoEstabelecimento, Funcao, Bandeira, FormaCaptura, NumeroParcelas, CodigoSegmento, ValorTransacoes, QuantidadeTransacoes, TaxaDescontoMedia) values (%d, %d, '%s', '%s', %d, %d, %d, %d, %.2f, %d, %.2f);"
 )
 
-
 type Ranking struct {
 	Year         int32  `fixed:"1,4"`
 	Quarter      int32  `fixed:"5,5"`

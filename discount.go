@@ -1,9 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"bufio"
 
 	"github.com/ianlopshire/go-fixedwidth"
 )
@@ -13,24 +13,24 @@ var (
 )
 
 type Discount struct {
-	Year         int32   `fixed:"1,4"`
-	Quarter      int32   `fixed:"5,5"`
-	Function     string  `fixed:"6,6"`
-	Brand        int32   `fixed:"7,8"`
-	Capture      int32   `fixed:"9,9"`
-	Installments int32   `fixed:"10,11"`
-	Segment      int32   `fixed:"12,14"`
+	Year         int32  `fixed:"1,4"`
+	Quarter      int32  `fixed:"5,5"`
+	Function     string `fixed:"6,6"`
+	Brand        int32  `fixed:"7,8"`
+	Capture      int32  `fixed:"9,9"`
+	Installments int32  `fixed:"10,11"`
+	Segment      int32  `fixed:"12,14"`
 	AvgFee       float32
-	AvgFeeInt    int32   `fixed:"15,18"`
-	MinFee       float32 
-	MinFeeInt    int32   `fixed:"19,22"`
-	MaxFee       float32 
-	MaxFeeInt    int32   `fixed:"23,26"`
+	AvgFeeInt    int32 `fixed:"15,18"`
+	MinFee       float32
+	MinFeeInt    int32 `fixed:"19,22"`
+	MaxFee       float32
+	MaxFeeInt    int32 `fixed:"23,26"`
 	StdDevFee    float32
-	StdDevFeeInt int32   `fixed:"27,30"`
+	StdDevFeeInt int32 `fixed:"27,30"`
 	Value        float32
-	ValueInt	 int32   `fixed:"31,45"`
-	Qtty         int32   `fixed:"46,57"`
+	ValueInt     int32 `fixed:"31,45"`
+	Qtty         int32 `fixed:"46,57"`
 }
 
 // GetInsert returns the SQL insert statement for the ranking
