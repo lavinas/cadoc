@@ -29,3 +29,8 @@ Thumbs.db
 /go.work
 /go.work.sum
 /pkg/
+
+# venv
+venv/
+
+
