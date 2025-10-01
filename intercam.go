@@ -170,6 +170,7 @@ func ParseIntercamFile(filename string) ([]*Intercam, error) {
 
 // ReconcileIntercam reconciles the intercam data
 func ReconcileateIntercam(filePath string) {
+	fmt.Println("Starting intercam reconciliation...")
 	genIntercan := LoadIntercam()
 	fileIntercan, err := ParseIntercamFile(filePath)
 	if err != nil {

@@ -192,6 +192,7 @@ func ParseDiscountFile(filePath string) ([]*Discount, error) {
 
 // ReconciliateDiscount reconciliates the discount data from the file with the generated data
 func ReconciliateDiscount(filePath string) {
+	fmt.Println("Starting discount reconciliation...")
 	genDiscounts := LoadDiscount()
 	fileDiscounts, err := ParseDiscountFile(filePath)
 	if err != nil {
