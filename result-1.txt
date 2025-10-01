@@ -1,0 +1,114 @@
+---------------------------------------------------------------------------------------------------------
+Starting ranking reconciliation...
+Line count match: 16770 lines
+Unique ranking count match: 16770 unique rankings
+All rankings match!
+Reconciliation complete.
+---------------------------------------------------------------------------------------------------------
+Starting concred reconciliation...
+Record mismatch for 2025-3-1-D:
+Generated: Year: 2025, Quarter: 3, Brand: 1, Function: D, CredentialedEstablishments: 2524050, ActiveEstablishments: 1750551, TransactionValue: 262582096.00, TransactionQuantity: 1750547
+File:      Year: 2025, Quarter: 3, Brand: 1, Function: D, CredentialedEstablishments: 2524047, ActiveEstablishments: 1750547, TransactionValue: 262582096.00, TransactionQuantity: 1750547
+Reconciliation complete.
+select * from dbo.cadoc_6334_conccred where Ano = 2025 and Trimestre = 3 and Bandeira = 1 and Funcao = 'D';
+---------------------------------------------------------------------------------------------------------
+Starting infresta reconciliation...
+Reconciliation complete.
+---------------------------------------------------------------------------------------------------------
+Starting infrterm reconciliation...
+Mismatch for 2025-3-MG:
+Generated: Year: 2025, Quarter: 3, UF: MG, TotalPOSCount: 733085, SharedPOSCount: 219925, ChipReaderPOSCount: 366543, PDVCount: 146617
+File:      Year: 2025, Quarter: 3, UF: MG, TotalPOSCount: 0, SharedPOSCount: 219925, ChipReaderPOSCount: 366543, PDVCount: 146617
+Mismatch for 2025-3-RJ:
+Generated: Year: 2025, Quarter: 3, UF: RJ, TotalPOSCount: 590419, SharedPOSCount: 177125, ChipReaderPOSCount: 295211, PDVCount: 118083
+File:      Year: 2025, Quarter: 3, UF: RJ, TotalPOSCount: 0, SharedPOSCount: 177125, ChipReaderPOSCount: 295211, PDVCount: 118083
+Mismatch for 2025-3-PR:
+Generated: Year: 2025, Quarter: 3, UF: PR, TotalPOSCount: 407513, SharedPOSCount: 122253, ChipReaderPOSCount: 203758, PDVCount: 81502
+File:      Year: 2025, Quarter: 3, UF: PR, TotalPOSCount: 0, SharedPOSCount: 122253, ChipReaderPOSCount: 203758, PDVCount: 81502
+Mismatch for 2025-3-PA:
+Generated: Year: 2025, Quarter: 3, UF: PA, TotalPOSCount: 298501, SharedPOSCount: 89550, ChipReaderPOSCount: 149251, PDVCount: 59700
+File:      Year: 2025, Quarter: 3, UF: PA, TotalPOSCount: 0, SharedPOSCount: 89550, ChipReaderPOSCount: 149251, PDVCount: 59700
+Mismatch for 2025-3-PB:
+Generated: Year: 2025, Quarter: 3, UF: PB, TotalPOSCount: 142666, SharedPOSCount: 42799, ChipReaderPOSCount: 71334, PDVCount: 28533
+File:      Year: 2025, Quarter: 3, UF: PB, TotalPOSCount: 0, SharedPOSCount: 42799, ChipReaderPOSCount: 71334, PDVCount: 28533
+Mismatch for 2025-3-TO:
+Generated: Year: 2025, Quarter: 3, UF: TO, TotalPOSCount: 54140, SharedPOSCount: 16242, ChipReaderPOSCount: 27070, PDVCount: 10828
+File:      Year: 2025, Quarter: 3, UF: TO, TotalPOSCount: 0, SharedPOSCount: 16242, ChipReaderPOSCount: 27070, PDVCount: 10828
+Mismatch for 2025-3-RR:
+Generated: Year: 2025, Quarter: 3, UF: RR, TotalPOSCount: 21948, SharedPOSCount: 6584, ChipReaderPOSCount: 10975, PDVCount: 4389
+File:      Year: 2025, Quarter: 3, UF: RR, TotalPOSCount: 0, SharedPOSCount: 6584, ChipReaderPOSCount: 10975, PDVCount: 4389
+Mismatch for 2025-3-SP:
+Generated: Year: 2025, Quarter: 3, UF: SP, TotalPOSCount: 1579572, SharedPOSCount: 479004, ChipReaderPOSCount: 789787, PDVCount: 315914
+File:      Year: 2025, Quarter: 3, UF: SP, TotalPOSCount: 0, SharedPOSCount: 479004, ChipReaderPOSCount: 789787, PDVCount: 315914
+Mismatch for 2025-3-BA:
+Generated: Year: 2025, Quarter: 3, UF: BA, TotalPOSCount: 509940, SharedPOSCount: 152982, ChipReaderPOSCount: 254970, PDVCount: 101988
+File:      Year: 2025, Quarter: 3, UF: BA, TotalPOSCount: 0, SharedPOSCount: 152982, ChipReaderPOSCount: 254970, PDVCount: 101988
+Mismatch for 2025-3-PE:
+Generated: Year: 2025, Quarter: 3, UF: PE, TotalPOSCount: 327766, SharedPOSCount: 98329, ChipReaderPOSCount: 163884, PDVCount: 65553
+File:      Year: 2025, Quarter: 3, UF: PE, TotalPOSCount: 0, SharedPOSCount: 98329, ChipReaderPOSCount: 163884, PDVCount: 65553
+Mismatch for 2025-3-CE:
+Generated: Year: 2025, Quarter: 3, UF: CE, TotalPOSCount: 317524, SharedPOSCount: 95257, ChipReaderPOSCount: 158763, PDVCount: 63504
+File:      Year: 2025, Quarter: 3, UF: CE, TotalPOSCount: 0, SharedPOSCount: 95257, ChipReaderPOSCount: 158763, PDVCount: 63504
+Mismatch for 2025-3-AM:
+Generated: Year: 2025, Quarter: 3, UF: AM, TotalPOSCount: 147787, SharedPOSCount: 44336, ChipReaderPOSCount: 73894, PDVCount: 29557
+File:      Year: 2025, Quarter: 3, UF: AM, TotalPOSCount: 0, SharedPOSCount: 44336, ChipReaderPOSCount: 73894, PDVCount: 29557
+Mismatch for 2025-3-MT:
+Generated: Year: 2025, Quarter: 3, UF: MT, TotalPOSCount: 133155, SharedPOSCount: 39946, ChipReaderPOSCount: 66578, PDVCount: 26631
+File:      Year: 2025, Quarter: 3, UF: MT, TotalPOSCount: 0, SharedPOSCount: 39946, ChipReaderPOSCount: 66578, PDVCount: 26631
+Mismatch for 2025-3-DF:
+Generated: Year: 2025, Quarter: 3, UF: DF, TotalPOSCount: 102427, SharedPOSCount: 30728, ChipReaderPOSCount: 51214, PDVCount: 20485
+File:      Year: 2025, Quarter: 3, UF: DF, TotalPOSCount: 0, SharedPOSCount: 30728, ChipReaderPOSCount: 51214, PDVCount: 20485
+Mismatch for 2025-3-SE:
+Generated: Year: 2025, Quarter: 3, UF: SE, TotalPOSCount: 79015, SharedPOSCount: 23704, ChipReaderPOSCount: 39508, PDVCount: 15803
+File:      Year: 2025, Quarter: 3, UF: SE, TotalPOSCount: 0, SharedPOSCount: 23704, ChipReaderPOSCount: 39508, PDVCount: 15803
+Mismatch for 2025-3-RS:
+Generated: Year: 2025, Quarter: 3, UF: RS, TotalPOSCount: 384833, SharedPOSCount: 115449, ChipReaderPOSCount: 192418, PDVCount: 76966
+File:      Year: 2025, Quarter: 3, UF: RS, TotalPOSCount: 0, SharedPOSCount: 115449, ChipReaderPOSCount: 192418, PDVCount: 76966
+Mismatch for 2025-3-SC:
+Generated: Year: 2025, Quarter: 3, UF: SC, TotalPOSCount: 280942, SharedPOSCount: 84282, ChipReaderPOSCount: 140472, PDVCount: 56188
+File:      Year: 2025, Quarter: 3, UF: SC, TotalPOSCount: 0, SharedPOSCount: 84282, ChipReaderPOSCount: 140472, PDVCount: 56188
+Mismatch for 2025-3-GO:
+Generated: Year: 2025, Quarter: 3, UF: GO, TotalPOSCount: 254604, SharedPOSCount: 76381, ChipReaderPOSCount: 127303, PDVCount: 50920
+File:      Year: 2025, Quarter: 3, UF: GO, TotalPOSCount: 0, SharedPOSCount: 76381, ChipReaderPOSCount: 127303, PDVCount: 50920
+Mismatch for 2025-3-ES:
+Generated: Year: 2025, Quarter: 3, UF: ES, TotalPOSCount: 141203, SharedPOSCount: 42360, ChipReaderPOSCount: 70603, PDVCount: 28240
+File:      Year: 2025, Quarter: 3, UF: ES, TotalPOSCount: 0, SharedPOSCount: 42360, ChipReaderPOSCount: 70603, PDVCount: 28240
+Mismatch for 2025-3-RN:
+Generated: Year: 2025, Quarter: 3, UF: RN, TotalPOSCount: 118522, SharedPOSCount: 35556, ChipReaderPOSCount: 59262, PDVCount: 23704
+File:      Year: 2025, Quarter: 3, UF: RN, TotalPOSCount: 0, SharedPOSCount: 35556, ChipReaderPOSCount: 59262, PDVCount: 23704
+Mismatch for 2025-3-AC:
+Generated: Year: 2025, Quarter: 3, UF: AC, TotalPOSCount: 29996, SharedPOSCount: 8998, ChipReaderPOSCount: 14999, PDVCount: 5999
+File:      Year: 2025, Quarter: 3, UF: AC, TotalPOSCount: 0, SharedPOSCount: 8998, ChipReaderPOSCount: 14999, PDVCount: 5999
+Mismatch for 2025-3-AP:
+Generated: Year: 2025, Quarter: 3, UF: AP, TotalPOSCount: 28533, SharedPOSCount: 8559, ChipReaderPOSCount: 14268, PDVCount: 5706
+File:      Year: 2025, Quarter: 3, UF: AP, TotalPOSCount: 0, SharedPOSCount: 8559, ChipReaderPOSCount: 14268, PDVCount: 5706
+Mismatch for 2025-3-MA:
+Generated: Year: 2025, Quarter: 3, UF: MA, TotalPOSCount: 240703, SharedPOSCount: 72210, ChipReaderPOSCount: 120353, PDVCount: 48140
+File:      Year: 2025, Quarter: 3, UF: MA, TotalPOSCount: 0, SharedPOSCount: 72210, ChipReaderPOSCount: 120353, PDVCount: 48140
+Mismatch for 2025-3-PI:
+Generated: Year: 2025, Quarter: 3, UF: PI, TotalPOSCount: 115596, SharedPOSCount: 34678, ChipReaderPOSCount: 57799, PDVCount: 23119
+File:      Year: 2025, Quarter: 3, UF: PI, TotalPOSCount: 0, SharedPOSCount: 34678, ChipReaderPOSCount: 57799, PDVCount: 23119
+Mismatch for 2025-3-AL:
+Generated: Year: 2025, Quarter: 3, UF: AL, TotalPOSCount: 110474, SharedPOSCount: 33142, ChipReaderPOSCount: 55238, PDVCount: 22094
+File:      Year: 2025, Quarter: 3, UF: AL, TotalPOSCount: 0, SharedPOSCount: 33142, ChipReaderPOSCount: 55238, PDVCount: 22094
+Mismatch for 2025-3-MS:
+Generated: Year: 2025, Quarter: 3, UF: MS, TotalPOSCount: 100232, SharedPOSCount: 30069, ChipReaderPOSCount: 50117, PDVCount: 20046
+File:      Year: 2025, Quarter: 3, UF: MS, TotalPOSCount: 0, SharedPOSCount: 30069, ChipReaderPOSCount: 50117, PDVCount: 20046
+Mismatch for 2025-3-RO:
+Generated: Year: 2025, Quarter: 3, UF: RO, TotalPOSCount: 59993, SharedPOSCount: 17997, ChipReaderPOSCount: 29998, PDVCount: 11998
+File:      Year: 2025, Quarter: 3, UF: RO, TotalPOSCount: 0, SharedPOSCount: 17997, ChipReaderPOSCount: 29998, PDVCount: 11998
+Reconciliation complete.
+---------------------------------------------------------------------------------------------------------
+Starting discount reconciliation...
+Mismatch for 2025|3|D|1|2|1|401:
+Generated: Year: 2025, Quarter: 3, Function: D, Brand: 1, Capture: 2, Installments: 1, Segment: 401, AvgFee: 1.80, MinFee: 0.05, MaxFee: 4.05, StdDevFee: 0.18, Value: 9187366.00, Qtty: 61269
+File:      Year: 2025, Quarter: 3, Function: D, Brand: 1, Capture: 2, Installments: 1, Segment: 401, AvgFee: 1.80, MinFee: 0.05, MaxFee: 4.05, StdDevFee: 0.18, Value: 9190374.00, Qtty: 61269
+Reconciliation complete.
+select * from dbo.cadoc_6334_desconto where Ano = 2025 and Trimestre = 3 and Funcao = 'D' and Bandeira = 1 and FormaCaptura = 2 and NumeroParcelas = 1;
+---------------------------------------------------------------------------------------------------------
+Starting intercam reconciliation...
+Intercam data reconciled successfully
+---------------------------------------------------------------------------------------------------------
+
+select * from dbo.cadoc_6334_conccred where Ano = 2025 and Trimestre = 3 and Bandeira = 1 and Funcao = 'D';
+select * from dbo.cadoc_6334_desconto where Ano = 2025 and Trimestre = 3 and Funcao = 'D' and Bandeira = 1 and FormaCaptura = 2 and NumeroParcelas = 1;

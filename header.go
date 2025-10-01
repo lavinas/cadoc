@@ -1,8 +1,8 @@
 package main
 
 import (
-	"time"
 	"fmt"
+	"time"
 
 	"github.com/ianlopshire/go-fixedwidth"
 )
@@ -36,7 +36,7 @@ func (rh *RankingHeader) Validate(name string, lines int32) error {
 		return fmt.Errorf("invalid line count: expected %d, got %d", lines, rh.Lines)
 	}
 	if rh.Acquirer != "47377613" {
-		return fmt.Errorf("invalid acquirer: expected 47377613, got %s", rh.Acquirer)	
+		return fmt.Errorf("invalid acquirer: expected 47377613, got %s", rh.Acquirer)
 	}
 	return nil
 }

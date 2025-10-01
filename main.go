@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-
 // main function to run the ReconcileIntercam function
 func main() {
 	fmt.Println("---------------------------------------------------------------------------------------------------------")
@@ -19,5 +18,7 @@ func main() {
 	ReconciliateDiscount("files/DESCONTO.TXT")
 	fmt.Println("---------------------------------------------------------------------------------------------------------")
 	ReconcileateIntercam("files/INTERCAM.TXT")
+	fmt.Println("---------------------------------------------------------------------------------------------------------")
+	ReconciliateSegments("files/SEGMENTO.TXT")
 	fmt.Println("---------------------------------------------------------------------------------------------------------")
 }
