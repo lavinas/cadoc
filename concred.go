@@ -133,6 +133,7 @@ func ParseConcredFile(filename string) ([]*Concred, error) {
 	}
 	// read records
 	var records []*Concred
+	var count int32 = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		var c Concred
@@ -141,8 +142,12 @@ func ParseConcredFile(filename string) ([]*Concred, error) {
 			return nil, err
 		}
 		records = append(records, record)
+		count++
 	}
 	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	if err := header.Validate("CONCCRED", count); err != nil {
 		return nil, err
 	}
 	return records, nil

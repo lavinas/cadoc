@@ -154,6 +154,7 @@ func ParseRankingFile(filename string) (*RankingHeader, []*Ranking, error) {
 	}
 	// read rankings
 	rankings := []*Ranking{}
+	var count int32 = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		ranking, err := (&Ranking{}).Parse(line)
@@ -161,8 +162,12 @@ func ParseRankingFile(filename string) (*RankingHeader, []*Ranking, error) {
 			return nil, nil, fmt.Errorf("error parsing line: %w", err)
 		}
 		rankings = append(rankings, ranking)
+		count++
 	}
 	if err := scanner.Err(); err != nil {
+		return nil, nil, err
+	}
+	if err := header.Validate("RANKING", count); err != nil {
 		return nil, nil, err
 	}
 	return header, rankings, nil
@@ -170,6 +175,7 @@ func ParseRankingFile(filename string) (*RankingHeader, []*Ranking, error) {
 
 // Reconciliate ranking
 func ReconciliateRanking(filename string) {
+	fmt.Println("Starting ranking reconciliation...")
 	rank1, err := LoadRanking()
 	if err != nil {
 		fmt.Println("Error loading ranking:", err)

@@ -110,6 +110,7 @@ func LoadInfrtermFile(filename string) ([]*Infrterm, error) {
 		return nil, fmt.Errorf("error parsing header: %w", err)
 	}
 	// data lines
+	var count int32 = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		inf := &Infrterm{}
@@ -118,8 +119,12 @@ func LoadInfrtermFile(filename string) ([]*Infrterm, error) {
 			return nil, err
 		}
 		r = append(r, inf)
+		count++
 	}
 	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	if err := header.Validate("INFRTERM", count); err != nil {
 		return nil, err
 	}
 	return r, nil

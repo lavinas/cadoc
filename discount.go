@@ -175,6 +175,7 @@ func ParseDiscountFile(filePath string) ([]*Discount, error) {
 		return nil, fmt.Errorf("error parsing header: %w", err)
 	}
 	// read discounts
+	var count int32 = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		disc := &Discount{}
@@ -183,8 +184,12 @@ func ParseDiscountFile(filePath string) ([]*Discount, error) {
 			return nil, err
 		}
 		discounts = append(discounts, parsedDisc)
+		count++
 	}
 	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	if err := header.Validate("DESCONTO", count); err != nil {
 		return nil, err
 	}
 	return discounts, nil

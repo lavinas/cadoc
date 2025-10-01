@@ -153,6 +153,8 @@ func ParseIntercamFile(filename string) ([]*Intercam, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error parsing header: %w", err)
 	}
+	// read records
+	var count int32 = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		intercam := &Intercam{}
@@ -161,8 +163,12 @@ func ParseIntercamFile(filename string) ([]*Intercam, error) {
 			return nil, err
 		}
 		intercams = append(intercams, intercam)
+		count++
 	}
 	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	if err := header.Validate("INTERCAM", count); err != nil {
 		return nil, err
 	}
 	return intercams, nil

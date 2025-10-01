@@ -4,7 +4,7 @@ CREATE TABLE cadoc_6334_bins (
     produto_base VARCHAR(100),
     banco_emissor_base VARCHAR(100),
     modalidade_final VARCHAR(1),
-    produto_final INT
+produto_final INT
 );
 
 INSERT INTO cadoc_6334_bins (bin, bandeira) VALUES ("65505700", "ELO");

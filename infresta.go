@@ -114,6 +114,7 @@ func LoadInfrestaFile(filename string) ([]*Infresta, error) {
 		return nil, fmt.Errorf("error parsing header: %w", err)
 	}
 	// data lines
+	var count int32 = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		inf := &Infresta{}
@@ -122,8 +123,12 @@ func LoadInfrestaFile(filename string) ([]*Infresta, error) {
 			return nil, err
 		}
 		ret = append(ret, parsedInf)
+		count++
 	}
 	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	if err := header.Validate("INFRESTA", count); err != nil {
 		return nil, err
 	}
 	return ret, nil

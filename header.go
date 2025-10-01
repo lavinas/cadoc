@@ -2,6 +2,7 @@ package main
 
 import (
 	"time"
+	"fmt"
 
 	"github.com/ianlopshire/go-fixedwidth"
 )
@@ -25,4 +26,17 @@ func (rh *RankingHeader) Parse(line string) (*RankingHeader, error) {
 		return nil, err
 	}
 	return rh, nil
+}
+
+func (rh *RankingHeader) Validate(name string, lines int32) error {
+	if rh.FileName != name {
+		return fmt.Errorf("invalid file name: expected %s, got %s", name, rh.FileName)
+	}
+	if rh.Lines != lines {
+		return fmt.Errorf("invalid line count: expected %d, got %d", lines, rh.Lines)
+	}
+	if rh.Acquirer != "47377613" {
+		return fmt.Errorf("invalid acquirer: expected 47377613, got %s", rh.Acquirer)	
+	}
+	return nil
 }
