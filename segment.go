@@ -12,15 +12,23 @@ import (
 type Segment struct {
 	Name        string `fixed:"1,50"`
 	Description string `fixed:"51,300"`
-	Code        int32  `fixed:"301,303"`
+	Code        int32  
+	CodeStr	    string `fixed:"301,303"`
 }
 
 // Parse parses a fixed-width string into a Segment struct
 func (s *Segment) Parse(line string) error {
+	fmt.Println("Parsing line:", line)
 	err := fixedwidth.Unmarshal([]byte(line), s)
 	if err != nil {
 		return err
 	}
+	// Convert CodeStr to Code
+	_, err = fmt.Sscanf(s.CodeStr, "%03d", &s.Code)
+	if err != nil {
+		return fmt.Errorf("error parsing Code: %w", err)
+	}
+	fmt.Printf("Parsed segment: %+v\n", s)
 	return nil
 }
 
@@ -215,21 +223,15 @@ func ReconciliateSegments(filename string) {
 	}
 	map1 := map[int32]*Segment{}
 	map2 := map[int32]*Segment{}
-	fmt.Println("-----------------------------------Fixed segment codes:")
 	for _, s := range fixedSegments {
-		fmt.Printf("%v\n", s)
 		map1[s.Code] = s
 	}
-	fmt.Println("-----------------------------------Parsed segment codes:")
 	for _, s := range parsedSegments {
-		fmt.Printf("%v\n", s)
 		map2[s.Code] = s
 	}
-	fmt.Println("-----------------------------------Differences:")
 	for code, seg1 := range map1 {
 		seg2, ok := map2[code]
 		if !ok {
-			fmt.Printf("Segment code %d missing in parsed segments\n", code)
 			continue
 		}
 		if seg1.String() != seg2.String() {
