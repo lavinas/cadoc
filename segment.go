@@ -215,12 +215,17 @@ func ReconciliateSegments(filename string) {
 	}
 	map1 := map[int32]*Segment{}
 	map2 := map[int32]*Segment{}
+	fmt.Println("-----------------------------------Fixed segment codes:")
 	for _, s := range fixedSegments {
+		fmt.Printf("%v\n", s)
 		map1[s.Code] = s
 	}
+	fmt.Println("-----------------------------------Parsed segment codes:")
 	for _, s := range parsedSegments {
+		fmt.Printf("%v\n", s)
 		map2[s.Code] = s
 	}
+	fmt.Println("-----------------------------------Differences:")
 	for code, seg1 := range map1 {
 		seg2, ok := map2[code]
 		if !ok {
